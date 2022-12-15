@@ -1,4 +1,4 @@
-- name: install apache and php for Ubuntu servers
+- name: install apache and php for Ubuntu
   apt: 
       name:
          - apache2
@@ -7,7 +7,7 @@
       update_cache: yes
   when: ansible_distribution == "Ubuntu"
   
-- name: install apache and php for CentOS servers
+- name: install apache and php for CentOS
   yum:
      name:
         - httpd

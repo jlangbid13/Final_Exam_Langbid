@@ -1,13 +1,15 @@
-- name: Install Nagios Monitoring Service in Ubuntu
+- name: Install Nagios for Ubuntu
   apt:
-    name: nagios4
-    state: present
+    name:
+      - nagios4
+    state: latest
     update_cache: yes
   when: ansible_distribution == "Ubuntu"
 
-- name: Install Nagios Monitoring Service in CentOS
+- name: Install Nagios for CentOS
   yum:
-    name: nagios
-    state: present
+    name: 
+      - nagios
+    state: latest
     update_cache: yes
   when: ansible_distribution == "CentOS"

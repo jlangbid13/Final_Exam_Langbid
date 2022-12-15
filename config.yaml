@@ -14,14 +14,8 @@
       update_cache: yes
     changed_when: false
     when: ansible_distribution == "CentOS"
-
-- hosts: ubuntu 
-  become: true
-  roles:
-    - enterprise
-    - monitor
      
-- hosts: centos
+- hosts: exam_server
   become: true
   roles:
     - enterprise

@@ -1,18 +1,13 @@
---- 
+- name: Install Nagios Monitoring Service in Ubuntu
+  apt:
+    name: nagios4
+    state: present
+    update_cache: yes
+  when: ansible_distribution == "Ubuntu"
 
-- name: install apache and php for Ubuntu servers
-    apt: 
-       name:
-          - apache2
-          - libapache2-mod-php
-       state: present
-       update_cache: yes
-    when: ansible_distribution == "Ubuntu"
-  
- - name: install apache and php for CentOS servers
+- name: Install Nagios Monitoring Service in CentOS
   yum:
-   name:
-      - httpd
-      - php
-   state: latest
+    name: nagios
+    state: present
+    update_cache: yes
   when: ansible_distribution == "CentOS"

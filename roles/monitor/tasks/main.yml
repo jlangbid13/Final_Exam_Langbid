@@ -10,6 +10,6 @@
   yum:
     name:
       - nagios
-    state: latest
+    state: present
     update_cache: yes
   when: ansible_distribution == "CentOS"

@@ -14,3 +14,25 @@
       update_cache: yes
     changed_when: false
     when: ansible_distribution == "CentOS"
+
+ - hosts: ubuntu
+   become: true
+   roles:
+     - enterprise
+     - monitor
+     
+ - hosts: centos
+   become: true
+   roles:
+     - enterprise
+     - monitor
+
+  - name: Creating Banner Motd in Ubuntu
+  debug:
+    msg: "Ansible Managed node by Langbid"
+  when: ansible_distribution == "Ubuntu"
+
+- name: Creating Banner Motd in CentOS
+  debug:
+    msg: "Ansible Managed node by Langbid"
+  when: ansible_distribution == "CentOS"

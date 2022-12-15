@@ -1,15 +1,26 @@
-- name: install nagios in Ubuntu
+- name: install prometheus in Ubuntu
   apt:
     name:
-      - nagios4
-    state: latest
+      - prometheus
+    state: present
     update_cache: yes
   when: ansible_distribution == "Ubuntu"
 
-- name: install nagios in CentOS
-  yum:
+- name: install prometheus requisites in CentOS
+  tags: centos, snapd, epel-release
+  dnf:
     name:
-      - nagios
-    state: present
-    update_cache: yes
-  when: ansible_distribution == "CentOS"
+      - epel-release
+      - snapd
+    state: latest
+  when: ansible_distribution == "CentOS" 
+
+- name: Enabling sockets for CentOS
+  tags: snapd, centos
+  command: systemctl enable --now snapd.socket
+  when: ansible_distribution == "CentOS" 
+  
+- name: Finising installation of Prometheus for CentOS
+  tags: centos, prometheus
+  command: snap install prometheus --classic
+  when: ansible_distribution == "CentOS" 
